@@ -1,0 +1,7 @@
+{
+  "name": "ai-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

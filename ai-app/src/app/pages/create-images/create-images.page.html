@@ -1,0 +1,62 @@
+<app-header backButton="/home" title="Estudio"></app-header>
+
+
+<ion-content>
+
+    <ion-grid >
+        <ion-row>
+            <ion-col size-lg="6" size-md="6" size-sm="12" size="12">
+                <ion-item class="title-item">
+                    <ion-label class="ion-text-wrap">Generar 
+                        <br>Images</ion-label>
+                    <ion-buttons slot="end">
+                        <ion-button fill="outline" shape="round" (click)="randomPromt()">
+                            Sorprendeme
+                        </ion-button>
+                    </ion-buttons>
+                </ion-item>
+              
+                <form [formGroup]="form"(ngSubmit)="submit()" (keyup.enter)="submit()">
+                    <ion-item class="input-item">
+                        <ion-label position="stacked">Tu Nombre</ion-label>
+                        <ion-input formControlName="name" placeholder="Yorch"></ion-input>
+                    </ion-item>
+            
+                    <ion-item class="input-item">
+                        <ion-label position="stacked">Tu descripcion detallada</ion-label>
+                        <ion-input auto-grow="true" formControlName="prompt" placeholder="Alguna descripcion chida"></ion-input>
+                    </ion-item>
+            
+                    <div class="ion-text-center">
+                        <ion-button [disabled]="form.invalid" class="submit-btn" type="submit" shape="round">
+                            Generar
+                            <ion-icon slot="end" name="images-outline"></ion-icon>
+                        </ion-button>
+                    </div>
+            
+                </form>
+            </ion-col>
+            <ion-col size-lg="6" size-md="6" size-sm="12" size="12">
+                <ion-item *ngIf="userPost" class="title-item">
+                    <ion-label  class="ion-text-wrap">Mis  
+                        <br>Publicaciones</ion-label>
+                </ion-item>
+            
+                <ion-grid (click)="showPostdetail(p)" class="post click" *ngFor="let p of userPost">
+                    <ion-row>
+                        <ion-col size="12">
+                            {{p.prompt}}
+                        </ion-col>
+                        <ion-col *ngFor="let image of p.images" size="3">
+                            <img [src]="image">
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    
+
+    
+</ion-content>
